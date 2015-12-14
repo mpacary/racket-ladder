@@ -1,0 +1,27 @@
+* {font-family: Arial;}
+
+a, a:visited, a:active, a:hover {color: #555;}
+
+table {border-collapse: collapse;}
+table th, td {white-space: nowrap; border:1px solid #bbb; padding:5px 10px;}
+table th {text-align: center; background-color: #ddd;}
+
+input[type=submit] {margin: 10px 20px; padding: 10px 20px;}
+
+.left {text-align: left;}
+.right {text-align: right;}
+.center {text-align: center;}
+
+ul.modules {display:table; padding-left: 0px; margin-left: 0px;}
+ul.modules li {display:table-cell; border:1px solid #bbb; padding:5px 10px; background-color: #ddd; list-style-type:none;}
+ul.modules li.current {background-color: #eee;}
+
+.message {padding: 10px 20px;}
+.message.success {border: 1px solid #4b4; background-color: #cec;}
+.message.info {border: 1px solid #44b; background-color: #cce;}
+.message.warning {border: 1px solid #bb4; background-color: #eec;}
+.message.error {border: 1px solid #b44; background-color: #ecc;}
+
+.positive_score_variation {color: #4b4;}
+.negative_score_variation {color: #c55;}
+.neutral_score_variation {color: #ccc;}
