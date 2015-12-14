@@ -1,6 +1,6 @@
 # Racket Ladder v0.1
 
-Ladder for racket sports (intended for clubs who want to keep an "internal ladder" for their members)
+Automated ladder for racket sports (intended for clubs who want to keep an "internal ladder" for their members)
 
 ## WARNING : this is a quick & dirty PHP/MySQL prototype
 
@@ -9,6 +9,7 @@ Ladder for racket sports (intended for clubs who want to keep an "internal ladde
 * No pagination
 * No backend/frontend framework used
 * Uses PHP globals
+* All static text is in french language (+ suited for my local badminton club)
 
 OBVIOUSLY NOT SUITED FOR ONLINE PRODUCTION PURPOSES.
 
