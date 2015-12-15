@@ -45,4 +45,4 @@ As easy as any other simple PHP/MySQL basic app.
 
 * Run SQL commands from `schema.sql` on your MySQL database
 * Copy/paste PHP files in the directory of your choice 
-* Edit `config.php` and set database info
+* Rename `config.php.sample` to `config.php` and set database info

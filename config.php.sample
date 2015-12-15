@@ -1,0 +1,13 @@
+<?php
+
+
+// Database info
+
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'racket_ladder');
+define('DB_LOGIN', 'login');
+define('DB_PASSWORD', '********');
+
+// The higher this value, the less the players scores are likely to change after each set (except for newcomers)
+// A value of 20 gives a +/-3% score change after a set against same score player
+define('MAX_SETS_FOR_AVERAGE', 20);
