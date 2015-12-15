@@ -36,7 +36,7 @@ However, it can be safely used on a computer / virtual machine if only accessibl
 
 ## Requirements
 
-* Webserver (Apache, nginx) with PHP >= 5.1
+* Webserver (Apache, nginx...) with PHP >= 5.1
 * MySQL >= 5.0
 
 ## Installation
