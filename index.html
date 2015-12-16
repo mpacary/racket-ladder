@@ -2,4 +2,7 @@
 layout: default
 ---
 
-{% markdown README.md %}
+{% capture content %}
+  {% include README.md %}
+{% endcapture %}
+{{ content | markdownify }}
