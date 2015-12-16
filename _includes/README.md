@@ -1,6 +1,3 @@
----
----
-
 # Racket Ladder v0.1
 
 Automated ladder for racket sports (intended for clubs who want to keep an "internal ladder" for their members)
