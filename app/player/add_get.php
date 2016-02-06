@@ -5,23 +5,26 @@ $form_url = Routing::getUrlFor(array('module' => $g_current_module, 'action' => 
 ?>
 <h2>Ajouter un joueur</h2>
 
-<form action="<?php echo $form_url; ?>" method="post">
+<form class="form-horizontal" action="<?php echo $form_url; ?>" method="post">
 
-  <table>
-  <tr>
-    <th>Prénom</th>
-    <td>
-      <input type="text" name="first_name" />
-    </td>
-  </tr>
-  <tr>
-    <th>Nom</th>
-    <td>
-      <input type="text" name="last_name" />
-    </td>
-  </tr>
-  </table>
+  <div class="form-group">
+    <label for="first_name" class="col-sm-2 control-label">Prénom</label>
+    <div class="col-sm-10">
+      <input class="form-control" type="text" name="first_name" />
+    </div>
+  </div>
   
-  <input type="submit" value="Ajouter" />
+  <div class="form-group">
+    <label for="last_name" class="col-sm-2 control-label">Nom</label>
+    <div class="col-sm-10">
+      <input class="form-control" type="text" name="last_name" />
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input class="btn btn-default" type="submit" value="Ajouter" />
+    </div>
+  </div>
 
 </form>

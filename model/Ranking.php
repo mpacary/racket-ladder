@@ -37,7 +37,8 @@ class RankingModel
     
     $resource = Database::query('SELECT * FROM bad_set WHERE id_set_type = '.$id_set_type.' ORDER BY creation_datetime DESC');
     
-    while($count_scores_retrieved < $count_id_players && $row = Database::fetchAssoc($resource))
+    //while($count_scores_retrieved < $count_id_players && $row = Database::fetchAssoc($resource))
+    while($row = Database::fetchAssoc($resource))
     {
       self::addScore($ar_count_players, $count_scores_retrieved, array('id_player' => $row['id_player_1_win'], 'score' => $row['new_score_player_1_win']));
       self::addScore($ar_count_players, $count_scores_retrieved, array('id_player' => $row['id_player_2_win'], 'score' => $row['new_score_player_2_win']));
@@ -76,9 +77,12 @@ class RankingModel
       return;
     
     if ($ar_count_players[$ar_data['id_player']] !== NULL) // we already retrieved the latest score for that player
+    {
+      $ar_count_players[$ar_data['id_player']]['nb_sets']++;
       return;
+    }
     
-    $ar_count_players[$ar_data['id_player']] = array('score' => $ar_data['score'], 'id' => $ar_data['id_player']);
+    $ar_count_players[$ar_data['id_player']] = array('score' => $ar_data['score'], 'id' => $ar_data['id_player'], 'nb_sets' => 1);
     $count_scores_retrieved++;
   }
   

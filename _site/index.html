@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>Racket Ladder</title>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<h1 id="racket-ladder-v01">Racket Ladder v0.1</h1>
+
+<p>Automated ladder for racket sports (intended for clubs who want to keep an “internal ladder” for their members)</p>
+
+<h2 id="warning--this-is-a-quick--dirty-phpmysql-prototype">WARNING : this is a quick &amp; dirty PHP/MySQL prototype</h2>
+
+<ul>
+  <li>No authentication</li>
+  <li>No security concerns checked</li>
+  <li>No pagination</li>
+  <li>No backend/frontend framework used</li>
+  <li>Uses PHP globals</li>
+  <li>All static text is in french language (+ suited for my local badminton club)</li>
+</ul>
+
+<p>OBVIOUSLY NOT SUITED FOR ONLINE PRODUCTION PURPOSES.</p>
+
+<p>However, it can be safely used on a computer / virtual machine if only accessible &amp; used locally.</p>
+
+<h2 id="features">Features</h2>
+
+<ul>
+  <li>List/add <strong>players</strong> (first name, last name)</li>
+  <li>List/add <strong>played sets</strong> (winner, loser, x2 if doubles)</li>
+  <li>Show <strong>ladders</strong> for the 5 supported <strong>game types</strong> (men singles, women singles, men doubles, women doubles, mixed doubles)</li>
+  <li>At each <strong>set</strong> addition, new <strong>players “values” (scores)</strong>, thus their ranking in the game type’s ladder, are computed automatically.
+Scores changes depends on :
+    <ul>
+      <li>Players “original” scores (right before the set was played), starting at 0</li>
+      <li>Wins/losses (obviously)</li>
+      <li>Number of sets already played before</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Notes for players</strong></p>
+
+<ul>
+  <li>Your score will be “auto adjusted” according to your performance (particularly quickly when you are a newcomer).</li>
+  <li>In order to get a good score (thus a better ranking) in the ladder, beat players with highest scores possible.</li>
+  <li>You are advised to meet players in a range of +/-10pts around your score.</li>
+  <li>A 100pts player winning a 10pts player will change nothing to scores/ladder.</li>
+  <li>A 100pts player losing to a 10pts one, will show <em>significant</em> changes (depending on the number of sets already played).</li>
+</ul>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+  <li>Webserver (Apache, nginx…) with PHP &gt;= 5.1</li>
+  <li>MySQL &gt;= 5.0</li>
+</ul>
+
+<h2 id="installation">Installation</h2>
+
+<p>As easy as any other simple PHP/MySQL basic app.</p>
+
+<ul>
+  <li>Run SQL commands from <code class="highlighter-rouge">schema.sql</code> on your MySQL database</li>
+  <li>Copy/paste PHP files in the directory of your choice</li>
+  <li>Rename <code class="highlighter-rouge">config.php.sample</code> to <code class="highlighter-rouge">config.php</code> and set database info</li>
+</ul>
+
+</body>
+</html>

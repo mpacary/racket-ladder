@@ -12,7 +12,7 @@ class Helper
   */
   static function buildSelect($params)
   {
-    $str = '<select name="'.$params['name'].'">'."\n";
+    $str = '<select name="'.$params['name'].'" class="form-control">'."\n";
     
     foreach($params['options'] as $key => $value)
       $str .= '<option value="'.htmlspecialchars($key).'">'.$value.'</option>'."\n";
@@ -35,6 +35,6 @@ class Helper
     else if ($is_negative)
       $css_class_prefix = 'negative';
     
-    return '<span class="'.($css_class_prefix).'_score_variation">('.($is_negative ? '' : '+').number_format($new_score - $old_score, 2).')</span>';
+    return '<span class="'.($css_class_prefix).'_score_variation">('.($is_negative ? '' : '+').number_format($new_score - $old_score, 1).')</span>';
   }
 }

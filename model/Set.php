@@ -26,6 +26,9 @@ class ModelSet
     if (isset($params['order_by']))
       $query .= ' ORDER BY '.$params['order_by'];
     
+    if (isset($params['limit']))
+      $query .= ' LIMIT '.$params['limit'];
+    
     return Database::fetchAll($query);
   }
   

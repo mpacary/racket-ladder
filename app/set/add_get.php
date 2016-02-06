@@ -28,42 +28,48 @@ $form_url = Routing::getUrlFor(array('module' => $g_current_module, 'action' => 
 ?>
 <h2>Ajouter un set</h2>
 
-<form id="form_add_set" action="<?php echo htmlspecialchars($form_url); ?>" method="post" onsubmit="return checkDistinctPlayers(this);">
+<form id="form_add_set" class="form-horizontal" action="<?php echo htmlspecialchars($form_url); ?>" method="post" onsubmit="return checkDistinctPlayers(this);">
 
-  <table>
-  <tr>
-    <th>Type de set</th>
-    <td class="right">
+  <div class="form-group">
+    <label for="id_set_type" class="col-sm-2 control-label">Type de set</label>
+    <div class="col-sm-10">
       <?php Helper::buildSelect(array('name' => 'id_set_type', 'options' => $set_types)) ?>
-    </td>
-  </tr>
-  <tr>
-    <th>Gagnant 1</th>
-    <td class="right">
-      <?php Helper::buildSelect(array('name' => 'id_player_1_win', 'options' => $players)) ?>
-    </td>
-  </tr>
-  <tr>
-    <th>Gagnant 2</th>
-    <td class="right">
-      <?php Helper::buildSelect(array('name' => 'id_player_2_win', 'options' => $players)) ?>
-    </td>
-  </tr>
-  <tr>
-    <th>Perdant 1</th>
-    <td class="right">
-      <?php Helper::buildSelect(array('name' => 'id_player_1_lose', 'options' => $players)) ?>
-    </td>
-  </tr>
-  <tr>
-    <th>Perdant 2</th>
-    <td class="right">
-      <?php Helper::buildSelect(array('name' => 'id_player_2_lose', 'options' => $players)) ?>
-    </td>
-  </tr>
-  </table>
+    </div>
+  </div>
   
-  <input type="submit" name="submit" value="Ajouter" />
+  <div class="form-group">
+    <label for="id_player_1_win" class="col-sm-2 control-label">Gagnant 1</label>
+    <div class="col-sm-10">
+      <?php Helper::buildSelect(array('name' => 'id_player_1_win', 'options' => $players)) ?>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="id_player_2_win" class="col-sm-2 control-label">Gagnant 2</label>
+    <div class="col-sm-10">
+      <?php Helper::buildSelect(array('name' => 'id_player_2_win', 'options' => $players)) ?>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="id_player_1_lose" class="col-sm-2 control-label">Perdant 1</label>
+    <div class="col-sm-10">
+      <?php Helper::buildSelect(array('name' => 'id_player_1_lose', 'options' => $players)) ?>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="id_player_2_lose" class="col-sm-2 control-label">Perdant 2</label>
+    <div class="col-sm-10">
+      <?php Helper::buildSelect(array('name' => 'id_player_2_lose', 'options' => $players)) ?>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="submit" name="submit" value="Ajouter" class="btn btn-default" />
+    </div>
+  </div>
 
 </form>
 
