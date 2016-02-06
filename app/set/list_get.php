@@ -47,7 +47,7 @@ if (count($rows) > 0)
     $row['new_score_player_1_win'] = sprintf("%.1f", $row['new_score_player_1_win']);
     $row['new_score_player_1_lose'] = sprintf("%.1f", $row['new_score_player_1_lose']);
     
-    if (ModelSetType::isDouble($row['id_set_type']))
+    if (ModelSetType::isDoubles($row['id_set_type']))
     {
       $str_var_w2 = Helper::getHTMLCodeForScoreVariation($row['new_score_player_2_win'], $row['init_score_player_2_win']);
       $str_var_l2 = Helper::getHTMLCodeForScoreVariation($row['new_score_player_2_lose'], $row['init_score_player_2_lose']);

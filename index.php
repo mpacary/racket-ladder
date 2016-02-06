@@ -2,12 +2,7 @@
 
 require 'config.php';
 require 'constants.php';
-require 'lib/Database.php';
-require 'lib/Helper.php';
-require 'lib/Message.php';
-require 'lib/Routing.php';
-require 'lib/Session.php';
-require 'lib/String.php';
+require 'autoloader.php';
 
 $default_actions = array(
     'list' => array(

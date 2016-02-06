@@ -4,6 +4,7 @@ include_once 'model/Player.php';
 
 class RankingModel
 {
+  
   static function get($id_set_type)
   {
     $id_set_type = intval($id_set_type);
@@ -69,6 +70,7 @@ class RankingModel
     return $ar_count_players;
   }
   
+  
   protected static function addScore(&$ar_count_players, &$count_scores_retrieved, $ar_data)
   {
     $id_player = $ar_data['id_player'];
@@ -85,6 +87,7 @@ class RankingModel
     $ar_count_players[$ar_data['id_player']] = array('score' => $ar_data['score'], 'id' => $ar_data['id_player'], 'nb_sets' => 1);
     $count_scores_retrieved++;
   }
+  
   
   protected static function sortByScoreDesc($a, $b)
   {
