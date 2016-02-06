@@ -25,16 +25,17 @@ class Helper
   
   static function getHTMLCodeForScoreVariation($new_score, $old_score)
   {
+    if ($new_score == $old_score)
+      return '';
+    
     $is_positive = ($new_score > $old_score);
     $is_negative = ($old_score > $new_score);
     
-    $css_class_prefix = 'neutral';
-    
     if ($is_positive)
       $css_class_prefix = 'positive';
-    else if ($is_negative)
-      $css_class_prefix = 'negative';
+    else
+      $css_class_prefix = 'negative';      
     
-    return '<span class="'.($css_class_prefix).'_score_variation">('.($is_negative ? '' : '+').number_format($new_score - $old_score, 1).')</span>';
+    return '<span class="'.($css_class_prefix).'_score_variation">'.($is_negative ? '' : '+').number_format($new_score - $old_score, 1).'</span>';
   }
 }

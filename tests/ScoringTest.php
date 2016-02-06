@@ -109,9 +109,6 @@ class ScoringTest extends PHPUnit_Framework_TestCase
       $new_score_player_2_lose
     );
     
-    //var_dump($expected_new_score_player_2_win);
-    //var_dump($new_score_player_2_win);
-    
     $this->assertEquals($expected_new_score_player_1_win,  $new_score_player_1_win, '', 0.01);
     $this->assertEquals($expected_new_score_player_2_win,  $new_score_player_2_win, '', 0.01);
     $this->assertEquals($expected_new_score_player_1_lose, $new_score_player_1_lose, '', 0.01);

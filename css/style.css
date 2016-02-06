@@ -6,9 +6,8 @@
 .message {padding: 10px 20px; border-radius: 4px; margin-top: 20px;}
 .message.bg-error {border: 1px solid #b44; background-color: #ecc;}
 
-.positive_score_variation {color: #4b4;}
-.negative_score_variation {color: #c55;}
-.neutral_score_variation {color: #ccc;}
+.positive_score_variation {color: #4b4; font-style: italic;}
+.negative_score_variation {color: #c55; font-style: italic;}
 
 /* fix default Bootstrap fluid table behavior */
 .table { width: auto !important; }
