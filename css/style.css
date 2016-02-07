@@ -19,6 +19,10 @@
   padding-right: 12px !important;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 #content {
   margin-top: 50px;
   padding-top: 20px;

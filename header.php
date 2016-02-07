@@ -33,14 +33,12 @@ Message::clear();
 
       foreach($g_modules as $module_code => $module)
       {
+        $classname = "";
+        
         if ($module_code == $g_current_module)
-        {
-          echo '<li class="active"><a href="#">'.$module['name'].'</a></li>'."\n";
-        }
-        else
-        {
-          echo '<li><a href="'.Routing::getUrlFor(array('module' => $module_code)).'">'.$module['name'].'</a></li>'."\n";
-        }
+          $classname = "active";
+        
+        echo '<li class="'.$classname.'"><a href="'.Routing::getUrlFor(array('module' => $module_code)).'">'.$module['name'].'</a></li>'."\n";
       }
 
       ?>
@@ -57,6 +55,9 @@ Message::clear();
 
 foreach($g_actions as $action_code => $action)
 {
+  if ($action_code != $g_current_action && isset($action['hidden']) && $action['hidden'])
+    continue; // skip
+  
   if ($action_code == $g_current_action)
   {
     echo '<li class="active"><a href="'.$url.'">'.$action['name'].'</a></li>'."\n";

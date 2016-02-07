@@ -37,7 +37,7 @@ class Database
     
     return $result;
   }
-  
+    
   static function fetchAssoc($resource)
   {
     return mysql_fetch_assoc($resource);
@@ -55,6 +55,11 @@ class Database
     return $result;
   }
   
+  static function fetchOne($query)
+  {
+    $res = Database::query($query);
+    return Database::fetchAssoc($res);
+  }
   
   /*
   * @params associative array with indexes 'table' and 'row' (associative array field name => field value)
@@ -71,6 +76,41 @@ class Database
     
     Database::query($query);
   }
+  
+  
+  /*
+  * @params associative array with indexes 'table' and 'row' (associative array field name => field value)
+  * The 'row' must have an 'id' index.
+  */
+  static function update($params)
+  {
+    if (!isset($params['row']))
+      throw new Exception("Index 'row' missing");
+    
+    $row = $params['row'];
+    
+    if (!isset($row['id']))
+      throw new Exception("Index 'id' missing");
+    
+    $query = 'UPDATE '.$params['table'].' SET ';
+    
+    $first = TRUE;
+    
+    foreach($row as $key => $value)
+    {
+      if ($first)
+        $first = FALSE;
+      else
+        $query .= ', ';
+      
+      $query .= $key.' = '.$value;
+    }
+    
+    $query .= " WHERE ID = ".intval($row['id']);
+    
+    Database::query($query);
+  }
+  
   
   static function escape($str)
   {

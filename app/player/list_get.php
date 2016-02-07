@@ -27,7 +27,7 @@ if (count($rows) > 0)
 
   foreach($rows as $row)
   {
-    echo '<tr>
+    echo '<tr class="clickable" data-href="'.Routing::getUrlFor(array('module' => $module_code, 'action' => 'detail', 'id' => $row['id'])).'">
         <!-- <td class="text-right">'.$row['id'].'</td> -->
         <td>'.$row['first_name'].'</td>
         <td>'.$row['last_name'].'</td>

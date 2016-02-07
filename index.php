@@ -39,7 +39,11 @@ $g_modules = array(
       ),
     'player' => array(
         'name' => 'Joueurs',
-        'actions' => $default_actions,
+        'actions' => array(
+            'list'   => array('name' => 'Lister'),
+            'add'    => array('name' => 'Ajouter'),
+            'detail' => array('name' => 'Détails', 'hidden' => TRUE),
+          ),
       ),
   );
 
@@ -88,10 +92,7 @@ Database::open();
 $g_method = $_SERVER['REQUEST_METHOD'];
 
 if ($g_method == 'GET')
-{
   require 'header.php';
-  require 'menu.php';
-}
 
 $filename_to_include = 'app/'.$g_current_module.'/'.$g_current_action.'_'.strtolower($g_method).'.php';
 
