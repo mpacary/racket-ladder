@@ -5,7 +5,11 @@ chdir('..');
 
 define('PHPUNIT_TESTING', TRUE);
 
-include 'config.php';
+if (file_exists('config.php'))
+  include 'config.php';
+else
+  include 'config.php.sample'; // for Travis CI
+
 include 'constants.php';
 include 'autoloader.php';
 
