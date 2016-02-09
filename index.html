@@ -1,16 +1,117 @@
----
-layout: default
----
-
+<!DOCTYPE html>
 <html>
-<head>
-<title>Racket Ladder</title>
-<meta charset="utf-8">
-</head>
-<body>
-{% capture content %}
-  {% include README.md %}
-{% endcapture %}
-{{ content | markdownify }}
-</body>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Racket Ladder by Frosty-Z</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Racket Ladder</h1>
+          <h2>Automated ladder system for racket sports</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/Frosty-Z/racket-ladder/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/Frosty-Z/racket-ladder/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/Frosty-Z/racket-ladder" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="racket-ladder-v01" class="anchor" href="#racket-ladder-v01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Racket Ladder v0.1</h1>
+
+<p><strong>Automated ladder for racket sports</strong>, intended for clubs who want to keep an "internal ladder" for their members.</p>
+
+<p><img src="https://api.travis-ci.org/Frosty-Z/racket-ladder.svg" alt="build status"></p>
+
+<h2>
+<a id="warning--this-is-a-quick--dirty-phpmysql-prototype" class="anchor" href="#warning--this-is-a-quick--dirty-phpmysql-prototype" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WARNING : this is a quick &amp; dirty PHP/MySQL prototype</h2>
+
+<ul>
+<li>No authentication</li>
+<li>No security concerns checked</li>
+<li>No pagination</li>
+<li>No backend/frontend framework used</li>
+<li>Uses PHP globals</li>
+<li>All static text is in french language (+ suited for my local badminton club)</li>
+</ul>
+
+<p>OBVIOUSLY NOT SUITED FOR ONLINE PRODUCTION PURPOSES.</p>
+
+<p>However, it can be safely used on a computer / virtual machine if only accessible &amp; used locally.</p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>List/add <strong>players</strong>
+</li>
+<li>View <strong>player</strong> details (with its rankings)</li>
+<li>List/add <strong>played sets</strong>
+</li>
+<li>Show <strong>ladders</strong> for the 5 supported <strong>game types</strong> (men singles, women singles, men doubles, women doubles, mixed doubles)</li>
+<li>At each <strong>set</strong> addition, new <strong>players "ladder scores"</strong>, thus their ranking in the game type's ladder, are computed automatically.
+Scores changes depends on :
+
+<ul>
+<li>Players "original" scores (right before the set was played), starting at 0</li>
+<li>Wins/losses (obviously)</li>
+<li>Number of sets already played before by concerned players</li>
+</ul>
+</li>
+</ul>
+
+<p><strong>Notes for players</strong></p>
+
+<ul>
+<li>Your score will be "auto adjusted" according to your performance (particularly quickly when you are a newcomer).</li>
+<li>In order to get a good score (thus a better ranking) in the ladder, beat players with highest scores possible.</li>
+<li>You are advised to meet players in a range of +/-10pts around your score.</li>
+<li>A 100pts player winning a 10pts player will change nothing to scores/ladder.</li>
+<li>A 100pts player losing to a 10pts one, will show <em>significant</em> changes (depending on the number of sets already played).</li>
+</ul>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>Webserver (Apache, nginx...) with PHP &gt;= 5.3</li>
+<li>MySQL &gt;= 5.0</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>As easy as any other simple PHP/MySQL basic app.</p>
+
+<ul>
+<li>Run SQL commands from <code>schema.sql</code> on your MySQL database</li>
+<li>Copy/paste PHP files in the directory of your choice </li>
+<li>Rename <code>config.php.sample</code> to <code>config.php</code> and set database info</li>
+</ul>
+        </section>
+
+        <footer>
+          Racket Ladder is maintained by <a href="https://github.com/Frosty-Z">Frosty-Z</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
 </html>
