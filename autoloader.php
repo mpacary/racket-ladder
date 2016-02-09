@@ -17,11 +17,12 @@ function __autoload($name) {
   
   if (!file_exists($file_to_include))
   {
-    $msg = "Impossible de charger le fichier '".$file_to_include."'.";
+    $msg = "Could not load file '".$file_to_include."'.";
     
     // PHPUnit does not supports that the autoloader throws exceptions, see https://github.com/sebastianbergmann/phpunit/issues/1598
     if (defined('PHPUNIT_TESTING'))
     {
+      echo "Autoloader error: ".$msg."\n";
       return false;
     }
     else
