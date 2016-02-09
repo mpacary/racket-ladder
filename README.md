@@ -2,6 +2,8 @@
 
 Automated ladder for racket sports (intended for clubs who want to keep an "internal ladder" for their members)
 
+![build status](https://api.travis-ci.org/Frosty-Z/racket-ladder.svg)
+
 ## WARNING : this is a quick & dirty PHP/MySQL prototype
 
 * No authentication
@@ -17,14 +19,15 @@ However, it can be safely used on a computer / virtual machine if only accessibl
 
 ## Features
 
-* List/add **players** (first name, last name)
-* List/add **played sets** (winner, loser, x2 if doubles)
+* List/add **players**
+* View **player** details (with its rankings)
+* List/add **played sets**
 * Show **ladders** for the 5 supported **game types** (men singles, women singles, men doubles, women doubles, mixed doubles)
-* At each **set** addition, new **players "values" (scores)**, thus their ranking in the game type's ladder, are computed automatically.
+* At each **set** addition, new **players "ladder scores"**, thus their ranking in the game type's ladder, are computed automatically.
   Scores changes depends on :
   * Players "original" scores (right before the set was played), starting at 0
   * Wins/losses (obviously)
-  * Number of sets already played before
+  * Number of sets already played before by concerned players
 
 **Notes for players**
 
@@ -36,7 +39,7 @@ However, it can be safely used on a computer / virtual machine if only accessibl
 
 ## Requirements
 
-* Webserver (Apache, nginx...) with PHP >= 5.1
+* Webserver (Apache, nginx...) with PHP >= 5.3
 * MySQL >= 5.0
 
 ## Installation
