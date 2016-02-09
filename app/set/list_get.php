@@ -61,10 +61,12 @@ if (count($rows) > 0)
       $str_var_l2 = '';
     }
     
+    $creation_datetime = new DateTime($row['creation_datetime']);
+    
     echo '
       <tr>
         <!-- <td>'.$row['id'].'</td> -->
-        <td>'.$row['creation_datetime'].'</td>
+        <td>'.$creation_datetime->format('j/n/Y - H:i').'</td>
         <td class="center">'.$row['st_abbreviation'].'</td>
         
         <td>'.$row['w1_first_name'].' '.$row['w1_last_name'].'</td>

@@ -2,7 +2,7 @@
 
 include_once 'model/Player.php';
 
-class RankingModel
+class ModelRanking
 {
   
   static function get($id_set_type)
@@ -67,6 +67,26 @@ class RankingModel
     // order $ar_count_players by score desc
     uasort($ar_count_players, array('self', 'sortByScoreDesc'));
     
+    // compute ranks & "fair ranks" (same score = same rank)
+    
+    $rank = 1;
+    $fair_rank = 1;
+    $previous_score = NULL;
+
+    foreach ($ar_count_players as &$player)
+    {
+      if ($previous_score != $player['score'])
+        $fair_rank = $rank;
+      
+      $player['rank'] = $rank;
+      $player['fair_rank'] = $fair_rank;
+      
+      $rank++;
+      $previous_score = $player['score'];
+    }
+    
+    unset($player);
+    
     return $ar_count_players;
   }
   
@@ -95,5 +115,49 @@ class RankingModel
       return 0;
     
     return ($a['score'] < $b['score']) ? 1 : -1;
+  }
+  
+  
+  static function getForPlayer($id_player)
+  {
+    // not perf wise for this first version
+    
+    $result_rankings = array();
+    
+    $set_types = ModelSetType::get(array('order_by' => 'name'));
+    
+    foreach($set_types as $type)
+    {
+      $ranking = self::get($type['id']);
+      
+      $player_found = FALSE;
+      
+      $pos = 1;
+      
+      foreach($ranking as $player_data)
+      {
+        if ($player_data['id'] == $id_player)
+        {
+          $player_found = TRUE;
+          break;
+        }
+        
+        $pos++;
+      }
+      
+      if (!$player_found)
+        continue; // skip to next 'set type'
+      
+      $result_rankings[] = array(
+          'category_name' => $type['name'],
+          'player_rank' => $player_data['rank'],
+          'player_fair_rank' => $player_data['fair_rank'],
+          'total_players' => count($ranking),
+          'player_score' => $player_data['score'],
+          'player_nb_sets' => $player_data['nb_sets'],
+        );
+    }
+    
+    return $result_rankings;
   }
 }
