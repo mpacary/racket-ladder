@@ -1,6 +1,6 @@
 <?php
 
-function __autoload($name) {
+spl_autoload_register(function ($name) {
   
   echo "Autoloader: trying to autoload class $name\n";
   
@@ -36,4 +36,4 @@ function __autoload($name) {
   }
   
   include_once $file_to_include;
-}
+});
