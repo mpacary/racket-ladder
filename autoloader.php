@@ -2,8 +2,6 @@
 
 spl_autoload_register(function ($name) {
   
-  echo "Autoloader: trying to autoload class $name\n";
-  
   if (substr($name, 0, 5) === 'Model')
   {
     $file_to_include = DIR_MODEL.'/'.substr($name, 5).'.php';
@@ -16,8 +14,6 @@ spl_autoload_register(function ($name) {
   {
     $file_to_include = DIR_LIB.'/'.$name.'.php';
   }
-  
-  echo "Autoloader: trying to load file $file_to_include\n";
   
   if (!file_exists($file_to_include))
   {

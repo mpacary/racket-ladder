@@ -3,7 +3,7 @@
 class Scoring
 {
   
-  function computeNewScores(
+  static function computeNewScores(
       $id_set_type,
     
       $init_score_player_1_win,
