@@ -1,6 +1,6 @@
 # Racket Ladder v0.1
 
-Automated ladder for racket sports (intended for clubs who want to keep an "internal ladder" for their members)
+**Automated ladder for racket sports**, intended for clubs who want to keep an "internal ladder" for their members.
 
 ![build status](https://api.travis-ci.org/Frosty-Z/racket-ladder.svg)
 
