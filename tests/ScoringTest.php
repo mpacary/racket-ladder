@@ -1,5 +1,7 @@
 <?php
 
+echo "Hello Travis?\n";
+
 chdir(dirname(__FILE__));
 chdir('..');
 
