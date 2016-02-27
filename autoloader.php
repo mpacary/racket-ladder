@@ -15,21 +15,7 @@ spl_autoload_register(function ($name) {
     $file_to_include = DIR_LIB.'/'.$name.'.php';
   }
   
-  if (!file_exists($file_to_include))
-  {
-    $msg = "Could not load file '".$file_to_include."'.";
-    
-    // PHPUnit does not supports that the autoloader throws exceptions, see https://github.com/sebastianbergmann/phpunit/issues/1598
-    if (defined('PHPUNIT_TESTING'))
-    {
-      echo "Autoloader error: ".$msg."\n";
-      return false;
-    }
-    else
-    {
-      throw new Exception($msg);
-    }
-  }
+  if (file_exists($file_to_include))
+    include_once $file_to_include;
   
-  include_once $file_to_include;
 });

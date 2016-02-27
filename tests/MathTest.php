@@ -1,9 +1,6 @@
 <?php
 
-chdir(dirname(__FILE__));
-chdir('..');
-
-include_once 'tests/bootstrap.php';
+include_once dirname(__FILE__).'/bootstrap.php';
 
 class MathTest extends PHPUnit_Framework_TestCase
 {

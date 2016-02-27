@@ -1,11 +1,8 @@
 <?php
 
-define('PHPUNIT_TESTING', TRUE);
+chdir(dirname(__FILE__).'/..');
 
-// for Travis-CI, from http://stackoverflow.com/a/22695608/488666 
-set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . "/mylib");
-set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . "/mylib2");
-set_include_path(get_include_path() . PATH_SEPARATOR . dirname(dirname(__FILE__)) . "/lib");
+define('PHPUNIT_TESTING', TRUE);
 
 if (file_exists('config.php'))
   include 'config.php';

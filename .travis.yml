@@ -8,5 +8,4 @@ branches:
     - master
 
 script:
-  - phpunit tests/ScoringTest.php
-  - phpunit tests/MathTest.php
+  - phpunit tests

@@ -3,7 +3,7 @@
 class Math
 {
   // from https://gist.github.com/ischenkodv/262906/128e5864fb09fee0dbed9cabe09b4537b4b02bbc
-  function array_median($arr)
+  static function array_median($arr)
   {
     if (count($arr) == 0)
       throw new Exception('Could not compute median for empty array');
@@ -30,7 +30,7 @@ class Math
   }
   
   // from https://gist.github.com/ischenkodv/262906/128e5864fb09fee0dbed9cabe09b4537b4b02bbc
-  function array_average($arr)
+  static function array_average($arr)
   {
     if (count($arr) == 0)
       throw new Exception('Could not compute average value for empty array');
