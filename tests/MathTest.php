@@ -3,7 +3,7 @@
 chdir(dirname(__FILE__));
 chdir('..');
 
-include_once 'tests/bootstrap.php';
+include 'tests/bootstrap.php';
 
 class MathTest extends PHPUnit_Framework_TestCase
 {
