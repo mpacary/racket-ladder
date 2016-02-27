@@ -27,7 +27,12 @@ if (count($rows) > 0)
   
   foreach($rows as $row)
   {
-    echo '<tr class="clickable" data-href="'.Routing::getUrlFor(array('module' => 'player', 'action' => 'detail', 'id' => $row['id'])).'">
+    $class_grayed = "";
+    
+    if ($row['nb_sets'] < MIN_SETS_FOR_BEING_RANKED)
+      $class_grayed = "grayed";
+    
+    echo '<tr class="clickable '.$class_grayed.'" data-href="'.Routing::getUrlFor(array('module' => 'player', 'action' => 'detail', 'id' => $row['id'])).'">
         <td class="center">'.$row['fair_rank'].'</td>
         <td>'.$row['first_name'].' '.$row['last_name'].'</td>
         <td class="right">'.sprintf("%.1f", $row['score']).' pts</td>

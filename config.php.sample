@@ -11,3 +11,8 @@ define('DB_PASSWORD', '********');
 // The higher this value, the less the players scores are likely to change after each set (except for newcomers)
 // A value of 20 gives a +/-3% score change after a set against same score player
 define('MAX_SETS_FOR_AVERAGE', 20);
+
+// Players are "officially" shown in rankings after playing the minimum number of sets below
+// (otherwise ranking scores are generally too inaccurate). Players with too few sets are shown, but "grayed".
+// Keep the value at 0 to disable this feature.
+define('MIN_SETS_FOR_BEING_RANKED', 10);

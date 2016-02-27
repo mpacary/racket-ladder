@@ -25,6 +25,10 @@
   cursor: pointer;
 }
 
+.grayed { color: #aaa; }
+
+tr.grayed { background-color: #fafafa; }
+
 #content {
   margin-top: 50px;
   padding-top: 20px;
