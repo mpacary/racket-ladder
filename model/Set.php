@@ -32,6 +32,7 @@ class ModelSet
     return Database::fetchAll($query);
   }
   
+  
   static function getLatestScore($id_player, $id_set_type)
   {
     $id_player = intval($id_player);
@@ -63,12 +64,13 @@ class ModelSet
         LIMIT 1)
       ORDER BY creation_datetime DESC
       LIMIT 1');
-      
+    
     if (count($results) == 0)
-      return 0;
-      
+      return self::getAverageScore($id_set_type);
+    
     return $results[0]['latest_score'];
   }
+  
   
   static function getNbSets($id_player, $id_set_type)
   {
@@ -100,5 +102,21 @@ class ModelSet
       return 0;
     
     return $results[0]['nb_sets'];
+  }
+  
+  
+  static function getAverageScore($id_set_type)
+  {
+    $rankings = ModelRanking::get($id_set_type);
+    
+    if (count($rankings) == 0)
+      return 0;
+    
+    $scores = array();
+    
+    foreach($rankings as $player)
+      $scores[] = $player['score'];
+    
+    return Math::array_average($scores);
   }
 }
