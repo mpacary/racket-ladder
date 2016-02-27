@@ -7,4 +7,6 @@ branches:
   only:
     - master
 
-script: phpunit tests
+script:
+  - phpunit tests/ScoringTest.php
+  - phpunit tests/MathTest.php
