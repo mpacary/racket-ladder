@@ -150,6 +150,7 @@ class ModelRanking
       
       $result_rankings[] = array(
           'category_name' => $type['name'],
+          'category_abbreviation' => $type['abbreviation'], // required by player/detail_get.php
           'player_rank' => $player_data['rank'],
           'player_fair_rank' => $player_data['fair_rank'],
           'total_players' => count($ranking),

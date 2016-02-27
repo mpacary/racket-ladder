@@ -46,8 +46,14 @@ $rankings = ModelRanking::getForPlayer($_GET['id']);
           <?php
           foreach($rankings as $ranking)
           {
+            $class_grayed = "";
+            
+            if ($ranking['player_nb_sets'] < MIN_SETS_FOR_BEING_RANKED)
+              $class_grayed = "grayed";
+            
             ?>
-            <tr>
+            <tr class="clickable <?php echo $class_grayed ?>"
+                data-href="<?php echo Routing::getUrlFor(array('module' => 'ranking', 'action' => $ranking['category_abbreviation'])) ?>">
               <td><?php echo $ranking['category_name'] ?></td>
               <td class="center"><?php echo $ranking['player_fair_rank']." / ".$ranking['total_players'] ?></td>
               <td class="right"><?php echo sprintf("%.1f", $ranking['player_score']) ?> pts</td>
