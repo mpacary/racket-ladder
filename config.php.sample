@@ -16,3 +16,6 @@ define('MAX_SETS_FOR_AVERAGE', 20);
 // (otherwise ranking scores are generally too inaccurate). Players with too few sets are shown, but "grayed".
 // Keep the value at 0 to disable this feature.
 define('MIN_SETS_FOR_BEING_RANKED', 10);
+
+// When score for a newcomer cannot be computed as an average of existing scores
+define('DEFAULT_SCORE', 10);

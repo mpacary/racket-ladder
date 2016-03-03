@@ -32,6 +32,112 @@ class ModelSet
     return Database::fetchAll($query);
   }
   
+  /**
+  * @data array with indexes:
+  * - 'id_set_type': integer
+  * - 'id_player_1_win': integer
+  * - 'id_player_2_win': integer or NULL
+  * - 'id_player_1_lose': integer
+  * - 'id_player_2_lose': integer or NULL
+  * - 'creation_datetime': string at format 'YYYY-MM-DD HH:MM:SS', OPTIONAL
+  */  
+  static function add($data)
+  {
+    $id_set_type = $data['id_set_type'];
+    $id_player_1_win = $data['id_player_1_win'];
+    $id_player_2_win = $data['id_player_2_win'];
+    $id_player_1_lose = $data['id_player_1_lose'];
+    $id_player_2_lose = $data['id_player_2_lose'];
+    
+    $init_score_player_1_win = ModelSet::getLatestScore($id_player_1_win, $id_set_type);
+    $init_score_player_1_lose = ModelSet::getLatestScore($id_player_1_lose, $id_set_type);
+
+    $init_nb_sets_player_1_win = ModelSet::getNbSets($id_player_1_win, $id_set_type);
+    $init_nb_sets_player_1_lose = ModelSet::getNbSets($id_player_1_lose, $id_set_type);
+
+    $new_score_player_1_win = DEFAULT_SCORE;
+    $new_score_player_1_lose = DEFAULT_SCORE;
+
+
+    if (ModelSetType::isDoubles($id_set_type))
+    {
+      $init_score_player_2_win = ModelSet::getLatestScore($id_player_2_win, $id_set_type);
+      $init_score_player_2_lose = ModelSet::getLatestScore($id_player_2_lose, $id_set_type);
+      
+      $init_nb_sets_player_2_win = ModelSet::getNbSets($id_player_2_win, $id_set_type);
+      $init_nb_sets_player_2_lose = ModelSet::getNbSets($id_player_2_lose, $id_set_type);
+      
+      $new_score_player_2_win = DEFAULT_SCORE;
+      $new_score_player_2_lose = DEFAULT_SCORE;
+    }
+    else
+    {
+      // set scoring data for doubles to NULL
+          
+      $init_score_player_2_win = 'NULL';
+      $init_score_player_2_lose = 'NULL';
+      
+      $init_nb_sets_player_2_win = 'NULL';
+      $init_nb_sets_player_2_lose = 'NULL';
+      
+      $new_score_player_2_win = 'NULL';
+      $new_score_player_2_lose = 'NULL';
+    }
+
+
+    Scoring::computeNewScores(
+        $id_set_type,
+        
+        $init_score_player_1_win,
+        $init_score_player_2_win,
+        $init_score_player_1_lose,
+        $init_score_player_2_lose,
+        
+        $init_nb_sets_player_1_win,
+        $init_nb_sets_player_2_win,
+        $init_nb_sets_player_1_lose,
+        $init_nb_sets_player_2_lose,
+        
+        $new_score_player_1_win,
+        $new_score_player_2_win,
+        $new_score_player_1_lose,
+        $new_score_player_2_lose
+      );
+    
+    $row = array(
+        'id_set_type' => $id_set_type,
+        'id_player_1_win' => $id_player_1_win,
+        'id_player_2_win' => ($id_player_2_win === NULL ? 'NULL' : $id_player_2_win),
+        'id_player_1_lose' => $id_player_1_lose,
+        'id_player_2_lose' => ($id_player_2_lose === NULL ? 'NULL' : $id_player_2_lose),
+        
+        'init_score_player_1_win' => $init_score_player_1_win,
+        'init_score_player_2_win' => $init_score_player_2_win,
+        'init_score_player_1_lose' => $init_score_player_1_lose,
+        'init_score_player_2_lose' => $init_score_player_2_lose,
+
+        'init_nb_sets_player_1_win' => $init_nb_sets_player_1_win,
+        'init_nb_sets_player_2_win' => $init_nb_sets_player_2_win,
+        'init_nb_sets_player_1_lose' => $init_nb_sets_player_1_lose,
+        'init_nb_sets_player_2_lose' => $init_nb_sets_player_2_lose,
+
+        'new_score_player_1_win ' => $new_score_player_1_win,
+        'new_score_player_2_win ' => $new_score_player_2_win,
+        'new_score_player_1_lose' => $new_score_player_1_lose,
+        'new_score_player_2_lose' => $new_score_player_2_lose
+      );
+    
+    
+    if (isset($data['creation_datetime']))
+      $row['creation_datetime'] = "'".Database::escape($data['creation_datetime'])."'";
+    
+
+    Database::insert(array(
+        'table' => 'bad_set',
+        'row' => $row
+      ));
+  }
+  
   
   static function getLatestScore($id_player, $id_set_type)
   {
@@ -99,9 +205,9 @@ class ModelSet
       );
       
     if (count($results) == 0)
-      return 0;
+      return 1;
     
-    return $results[0]['nb_sets'];
+    return $results[0]['nb_sets'] + 1;
   }
   
   
@@ -110,7 +216,7 @@ class ModelSet
     $rankings = ModelRanking::get($id_set_type);
     
     if (count($rankings) == 0)
-      return 0;
+      return DEFAULT_SCORE;
     
     $scores = array();
     
