@@ -26,6 +26,7 @@ $g_modules = array(
     'ranking' => array(
         'name' => 'Classements',
         'actions' => array(
+            'all' => array('name' => 'Tous'),
             'SD' => array('name' => 'Simple Dames'),
             'SH' => array('name' => 'Simple Hommes'),
             'DX' => array('name' => 'Double Mixte'),

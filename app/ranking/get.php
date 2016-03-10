@@ -1,11 +1,9 @@
 <?php
 
-include_once 'model/Ranking.php';
-
 $rows = ModelRanking::get($g_set_type);
 
 ?>
-<h2>Classement : <?php echo $g_ranking_title ?></h2>
+<h3>Classement : <?php echo $g_ranking_title ?></h3>
 
 <?php
 
