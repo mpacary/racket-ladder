@@ -5,21 +5,23 @@ include_once 'model/Player.php';
 class ModelRanking
 {
   
-  static function get($id_set_type)
+  static function get($id_set_type, $date = NULL)
   {
     $id_set_type = intval($id_set_type);
     
     // retrieve the distinct list of players who have played the asked set type
     
+    $conditions = 'id_set_type = ' . $id_set_type . ($date !== NULL ? " AND creation_datetime < '".$date."'" : '');
+    
     $ar_id_players = Database::fetchAll(
         'SELECT DISTINCT id_player FROM (
-          (SELECT DISTINCT id_player_1_win AS id_player FROM bad_set WHERE id_set_type = '.$id_set_type.')
+          (SELECT DISTINCT id_player_1_win AS id_player FROM bad_set WHERE '.$conditions.')
           UNION
-          (SELECT DISTINCT id_player_2_win AS id_player FROM bad_set WHERE id_set_type = '.$id_set_type.')
+          (SELECT DISTINCT id_player_2_win AS id_player FROM bad_set WHERE '.$conditions.')
           UNION
-          (SELECT DISTINCT id_player_1_lose AS id_player FROM bad_set WHERE id_set_type = '.$id_set_type.')
+          (SELECT DISTINCT id_player_1_lose AS id_player FROM bad_set WHERE '.$conditions.')
           UNION
-          (SELECT DISTINCT id_player_2_lose AS id_player FROM bad_set WHERE id_set_type = '.$id_set_type.')
+          (SELECT DISTINCT id_player_2_lose AS id_player FROM bad_set WHERE '.$conditions.')
         ) AS t
         WHERE id_player IS NOT NULL'
       );
@@ -36,9 +38,8 @@ class ModelRanking
     
     $count_scores_retrieved = 0;
     
-    $resource = Database::query('SELECT * FROM bad_set WHERE id_set_type = '.$id_set_type.' ORDER BY creation_datetime DESC');
+    $resource = Database::query('SELECT * FROM bad_set WHERE '.$conditions.' ORDER BY creation_datetime DESC');
     
-    //while($count_scores_retrieved < $count_id_players && $row = Database::fetchAssoc($resource))
     while($row = Database::fetchAssoc($resource))
     {
       self::addScore($ar_count_players, $count_scores_retrieved, array('id_player' => $row['id_player_1_win'], 'score' => $row['new_score_player_1_win']));
@@ -86,6 +87,31 @@ class ModelRanking
     }
     
     unset($player);
+    
+    // compute "fair rank diff" (helps to show how players ranking have evolved since previous training session)
+    
+    if ($date === NULL)
+    {
+      $now = new DateTime();
+            
+      $previous_rankings = self::get($id_set_type, $now->sub(new DateInterval(RANKINGS_COMPARISON_TIME_INTERVAL))->format('Y-m-d H:i:s'));
+      
+      foreach ($ar_count_players as &$player)
+      {
+        $player['fair_rank_diff'] = 0;
+        
+        foreach ($previous_rankings as $prev_player)
+        {
+          if ($player['id'] == $prev_player['id'])
+          {
+            $player['fair_rank_diff'] = $prev_player['fair_rank'] - $player['fair_rank'];
+            break;
+          }
+        }
+      }
+      
+      unset($player);
+    }
     
     return $ar_count_players;
   }

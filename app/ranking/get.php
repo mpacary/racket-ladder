@@ -15,6 +15,7 @@ if (count($rows) > 0)
     <thead>
     <tr>
       <th>N°</th>
+      <th></th>
       <th>Nom</th>
       <th>Score</th>
       <th>Nb sets</th>
@@ -32,6 +33,10 @@ if (count($rows) > 0)
     
     echo '<tr class="clickable '.$class_grayed.'" data-href="'.Routing::getUrlFor(array('module' => 'player', 'action' => 'detail', 'id' => $row['id'])).'">
         <td class="center">'.$row['fair_rank'].'</td>
+        <td class="vert-align">'.
+          ($row['fair_rank_diff'] > 0 ? '<span class="glyphicon glyphicon-chevron-up positive" aria-hidden="true"></span>' : '')
+          .($row['fair_rank_diff'] < 0 ? '<span class="glyphicon glyphicon-chevron-down negative" aria-hidden="true"></span>' : '')
+        .'</td>
         <td>'.$row['first_name'].' '.$row['last_name'].'</td>
         <td class="right">'.number_format($row['score'], 1).' pts</td>
         <td class="right">'.$row['nb_sets'].'</td>

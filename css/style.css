@@ -7,8 +7,13 @@
 
 .form-group .message { margin:0px; }
 
-.positive_score_variation { color: #4b4; font-style: italic; }
-.negative_score_variation { color: #c55; font-style: italic; }
+.score_variation { font-style: italic; }
+
+.positive { color: #4b4; }
+.negative { color: #c55; }
+
+.grayed .positive { color: #beb; }
+.grayed .negative { color: #ecc; }
 
 /* fix default Bootstrap fluid table behavior */
 .table { width: auto !important; }
@@ -18,6 +23,10 @@
   white-space: nowrap;
   padding-left: 12px !important;
   padding-right: 12px !important;
+}
+
+.table tbody>tr>td.vert-align {
+    vertical-align: middle;
 }
 
 .clickable {
@@ -36,6 +45,8 @@ tr.grayed { background-color: #fafafa; }
   margin-top: 50px;
   padding-top: 20px;
 }
+
+
 
 @media print {
   
