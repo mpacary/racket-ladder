@@ -44,16 +44,16 @@ if (count($rows) > 0)
     $str_var_w1 = Helper::getHTMLCodeForScoreVariation($row['new_score_player_1_win'], $row['init_score_player_1_win']);
     $str_var_l1 = Helper::getHTMLCodeForScoreVariation($row['new_score_player_1_lose'], $row['init_score_player_1_lose']);
     
-    $row['new_score_player_1_win'] = sprintf("%.1f", $row['new_score_player_1_win']);
-    $row['new_score_player_1_lose'] = sprintf("%.1f", $row['new_score_player_1_lose']);
+    $row['new_score_player_1_win'] = number_format($row['new_score_player_1_win'], 1);
+    $row['new_score_player_1_lose'] = number_format($row['new_score_player_1_lose'], 1);
     
     if (ModelSetType::isDoubles($row['id_set_type']))
     {
       $str_var_w2 = Helper::getHTMLCodeForScoreVariation($row['new_score_player_2_win'], $row['init_score_player_2_win']);
       $str_var_l2 = Helper::getHTMLCodeForScoreVariation($row['new_score_player_2_lose'], $row['init_score_player_2_lose']);
       
-      $row['new_score_player_2_win'] = sprintf("%.1f", $row['new_score_player_2_win']);
-      $row['new_score_player_2_lose'] = sprintf("%.1f", $row['new_score_player_2_lose']);
+      $row['new_score_player_2_win'] = number_format($row['new_score_player_2_win'], 1);
+      $row['new_score_player_2_lose'] = number_format($row['new_score_player_2_lose'], 1);
     }
     else
     {

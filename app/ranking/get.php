@@ -33,7 +33,7 @@ if (count($rows) > 0)
     echo '<tr class="clickable '.$class_grayed.'" data-href="'.Routing::getUrlFor(array('module' => 'player', 'action' => 'detail', 'id' => $row['id'])).'">
         <td class="center">'.$row['fair_rank'].'</td>
         <td>'.$row['first_name'].' '.$row['last_name'].'</td>
-        <td class="right">'.sprintf("%.1f", $row['score']).' pts</td>
+        <td class="right">'.number_format($row['score'], 1).' pts</td>
         <td class="right">'.$row['nb_sets'].'</td>
       </tr>'."\n";
   }

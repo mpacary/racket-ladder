@@ -25,9 +25,6 @@ class Helper
   
   static function getHTMLCodeForScoreVariation($new_score, $old_score)
   {
-    $new_score = round($new_score, 1);
-    $old_score = round($old_score, 1);
-    
     if ($new_score == $old_score)
       return '';
     
