@@ -36,6 +36,6 @@ class Helper
     else
       $css_class_prefix = 'negative';      
     
-    return '<span class="'.($css_class_prefix).' score_variation">'.($is_negative ? '' : '+').number_format($new_score - $old_score, 1).'</span>';
+    return '<span class="'.($css_class_prefix).' score_variation">'.($is_negative ? '' : '+').number_format(round($new_score, 1) - round($old_score, 1), 1).'</span>';
   }
 }
