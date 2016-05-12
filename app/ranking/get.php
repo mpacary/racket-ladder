@@ -55,3 +55,5 @@ else
   <p class="message text-info bg-info">Aucun set n'a été joué dans cette catégorie.</p>
   <?php
 }
+
+?>

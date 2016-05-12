@@ -46,8 +46,12 @@ tr.grayed { background-color: #fafafa; }
   padding-top: 20px;
 }
 
-
-
+@media screen {
+  div.printable-footer {
+    display: none;
+  }
+}
+    
 @media print {
   
   @page { margin: 10mm; }
@@ -68,6 +72,11 @@ tr.grayed { background-color: #fafafa; }
     padding: 0px auto;
     margin: 0px auto;
     font-size: 10pt;
+  }
+  
+  div.printable-footer {
+    position: fixed;
+    bottom: 0;
   }
   
   #content {margin-top: 0px; padding-top: 0px;}
