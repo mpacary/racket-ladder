@@ -32,7 +32,7 @@ if (count($rows) > 0)
       $class_grayed = "grayed";
     
     echo '<tr class="clickable '.$class_grayed.'" data-href="'.Routing::getUrlFor(array('module' => 'player', 'action' => 'detail', 'id' => $row['id'])).'">
-        <td class="center">'.$row['fair_rank'].'</td>
+        <td class="center">'.$row['approved_rank'].'</td>
         <td class="vert-align">'.
           ($row['fair_rank_diff'] > 0 ? '<span class="glyphicon glyphicon-chevron-up positive" aria-hidden="true"></span>' : '')
           .($row['fair_rank_diff'] < 0 ? '<span class="glyphicon glyphicon-chevron-down negative" aria-hidden="true"></span>' : '')

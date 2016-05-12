@@ -72,10 +72,15 @@ class ModelRanking
     
     $rank = 1;
     $fair_rank = 1;
+    $approved_rank = 1;
+    $approved_fair_rank = 1;
     $previous_score = NULL;
+    $previous_approved_score = NULL;
 
     foreach ($ar_count_players as &$player)
     {
+      // basic ranking (allows to track ranking evolution)
+      
       if ($previous_score != $player['score'])
         $fair_rank = $rank;
       
@@ -84,6 +89,24 @@ class ModelRanking
       
       $rank++;
       $previous_score = $player['score'];
+      
+      // 'approved' ranking
+      
+      if ($player['nb_sets'] >= MIN_SETS_FOR_BEING_RANKED)
+      {
+        if ($previous_approved_score != $player['score'])
+          $approved_fair_rank = $approved_rank;
+        
+        $player['approved_rank'] = $approved_fair_rank;
+        
+        $approved_rank++;
+        $previous_approved_score = $player['score'];
+      }
+      else
+      {
+        $player['approved_rank'] = NULL;
+      }
+      
     }
     
     unset($player);
