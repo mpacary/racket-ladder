@@ -26,7 +26,7 @@ $g_modules = array(
     'ranking' => array(
         'name' => 'Classements',
         'actions' => array(
-            //'all' => array('name' => 'Tous'), // for printing only
+            'all' => array('name' => 'Tous', 'hidden' => TRUE), // for printing only
             'SD' => array('name' => 'Simple Dames'),
             'SH' => array('name' => 'Simple Hommes'),
             'DX' => array('name' => 'Double Mixte'),
