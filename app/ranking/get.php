@@ -3,7 +3,7 @@
 $rows = ModelRanking::get($g_set_type);
 
 ?>
-<h3>Classement : <?php echo $g_ranking_title ?></h3>
+<h3><?php echo $g_ranking_title ?></h3>
 
 <?php
 
